@@ -53,7 +53,7 @@ namespace NumberTracker
             //write some records. please write some records and what I want you to write is my list of numbers.
             cvsWriter.WriteRecords(numbers);
             //close the fileWriter
-            fileWriter.Close();
+            fileWriter.Close();//like a waterfall
         }
     }
 }
