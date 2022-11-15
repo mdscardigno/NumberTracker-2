@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using CsvHelper;
+using CsvHelper;//third party library outside of Microsoft
 
 namespace NumberTracker
 {
@@ -45,10 +45,15 @@ namespace NumberTracker
                     numbers.Add(number);
                 }
             }//end of while
-
+            //the fileWriter uses the file "numbers.csv"
             var fileWriter = new StreamWriter("numbers.csv");
             //send some data to the stream
+            //CsvWriter uses the fileWriter 
             var cvsWriter = new CsvWriter(fileWriter, CultureInfo.InvariantCulture);
+            //write some records. please write some records and what I want you to write is my list of numbers.
+            cvsWriter.WriteRecords(numbers);
+            //close the fileWriter
+            fileWriter.Close();
         }
     }
 }
