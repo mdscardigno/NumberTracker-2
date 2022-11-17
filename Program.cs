@@ -28,7 +28,7 @@ namespace NumberTracker
             }
 
             //create a file reader to read from numbers.csv
-            var fileReader = new StreamReader("numbers.csv");
+            // var fileReader = new StreamReader("numbers.csv");
 
             //create a configuration that indicates this csv file has no header
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
@@ -37,7 +37,8 @@ namespace NumberTracker
                 HasHeaderRecord = false
             };
 
-            var csvReader = new CsvReader(fileReader, config);
+            // var csvReader = new CsvReader(fileReader, config); rather than reading from fileReader we user reader instead
+            var csvReader = new CsvReader(reader, config);
             //what kind of data to read it as <int> and that we want it back as a list. Therefore, GetRecords is gonna give us a list of ints
             //creates a list of ints but from *READING* the data from the file
             var numbers = csvReader.GetRecords<int>().ToList();
