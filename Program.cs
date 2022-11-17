@@ -12,6 +12,21 @@ namespace NumberTracker
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Welcome to the Number Tracker!");
+            //Generic reader that can be a StreamReader or a StringReader
+            TextReader reader;
+            //If the file exists
+            if (File.Exists("numbers.csv"))
+            {
+                //assign a StreamReader to the read from the file
+                reader = new StreamReader("numbers.csv");
+            }
+            else
+            {
+                //Assign a StringReader to read from an empty string
+                reader = new StringReader("");
+            }
+
             //create a file reader to read from numbers.csv
             var fileReader = new StreamReader("numbers.csv");
 
@@ -23,10 +38,12 @@ namespace NumberTracker
             };
 
             var csvReader = new CsvReader(fileReader, config);
+            //what kind of data to read it as <int> and that we want it back as a list. Therefore, GetRecords is gonna give us a list of ints
+            //creates a list of ints but from *READING* the data from the file
+            var numbers = csvReader.GetRecords<int>().ToList();
 
-            Console.WriteLine("Number Tracker");
             //create an empty list of numbers
-            var numbers = new List<int>();
+            // var numbers = new List<int>();
 
             //controls if we are still running our loop asking for more numbers
             var isRunning = true;
