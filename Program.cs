@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using CsvHelper;//third party library outside of Microsoft
+using CsvHelper.Configuration;
 
 namespace NumberTracker
 {
@@ -11,6 +12,18 @@ namespace NumberTracker
     {
         static void Main(string[] args)
         {
+            //create a file reader to read from numbers.csv
+            var fileReader = new StreamReader("numbers.csv");
+
+            //create a configuration that indicates this csv file has no header
+            var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+                //tell the header not to interpret the first row as a header since it is just the first number
+                HasHeaderRecord = false
+            };
+
+            var csvReader = new CsvReader(fileReader, config);
+
             Console.WriteLine("Number Tracker");
             //create an empty list of numbers
             var numbers = new List<int>();
